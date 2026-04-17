@@ -8,7 +8,7 @@ public class BarkRecognizer {
     }
 
     public void recognize(String bark) {
-        System.err.println("  BarkRecognizer: Heard a '" + bark + "'");
+        System.out.println("  BarkRecognizer: Heard a '" + bark + "'");
         door.open();
     }
 }
