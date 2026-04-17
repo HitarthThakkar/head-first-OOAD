@@ -1,5 +1,4 @@
 
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -17,8 +16,7 @@ public class Inventory {
     }
 
     public Guitar getGuitar(String serialNumber) {
-        for (Iterator i = guitars.iterator(); i.hasNext();) {
-            Guitar guitar = (Guitar) i.next();
+        for (Guitar guitar : guitars) {
             if (guitar.getSerialNumber().equals(serialNumber)) {
                 return guitar;
             }
@@ -26,13 +24,12 @@ public class Inventory {
         return null;
     }
 
-    public Guitar search(Guitar searchGuitar) {
-        for (Iterator i = guitars.iterator(); i.hasNext();) {
-            Guitar guitar = (Guitar) i.next();
-
+    public List<Guitar> search(Guitar searchGuitar) {
+        List<Guitar> matchingGuitars = new LinkedList<>();
+        for (Guitar guitar : guitars) {
             // Ignore serial number since that’s unique
             // Ignore price since that’s unique
-            
+
             if (searchGuitar.getBuilder() != guitar.getBuilder()) {
                 continue;
             }
@@ -55,8 +52,8 @@ public class Inventory {
                 continue;
             }
 
-            return guitar;
+            matchingGuitars.add(guitar);
         }
-        return null;
+        return matchingGuitars;
     }
 }
