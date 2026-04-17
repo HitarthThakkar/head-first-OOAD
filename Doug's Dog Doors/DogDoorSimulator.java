@@ -4,34 +4,41 @@ public class DogDoorSimulator {
     public static void main(String[] args) {
 
         DogDoor door = new DogDoor();
+
+        door.addAllowedBark(new Bark("rowlf"));
+        door.addAllowedBark(new Bark("rooowlf"));
+        door.addAllowedBark(new Bark("rawlf"));
+        door.addAllowedBark(new Bark("woof"));
+
         BarkRecognizer recognizer = new BarkRecognizer(door);
-        // Not used anywhere
-        Remote remote = new Remote(door);
 
-        // This tests the scenario 6.1 from the use-case.
-        boolean testAlternatePath = true;
+        // Simulate the hardware hearing a bark
+        System.out.println("Bruce starts barking...");
+        recognizer.recognize(new Bark("rowlf"));
 
-        System.out.println("Fido barks to go outside...");
-        recognizer.recognize("Woof");
-        // remote.pressButton();
+        System.out.println("\nBruce has gone outside...");
 
-        System.out.println("\nFido has gone outside...");
-
-        System.out.println("\nFido's all done...");
-
-        if (testAlternatePath) {
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-            }
-
-            System.out.println("...but he's stuck outside!");
-            System.out.println("\nFido starts barking...");
-            // System.out.println("\n...so Gina grabs the remote control.");
-            recognizer.recognize("Woof");
-            // remote.pressButton();
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException e) {
         }
 
-        System.out.println("\nFido's back inside...");
+        System.out.println("\nBruce's all done...");
+        System.out.println("...but he's stuck outside!");
+
+        // Simulate the hardware hearing a bark (not Bruce!)
+        Bark smallDogBark = new Bark("yip");
+        System.out.println("A small dog starts barking.");
+        recognizer.recognize(smallDogBark);
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+        }
+
+        System.out.println("\nBruce starts barking...");
+        recognizer.recognize(new Bark("rooowlf"));
+
+        System.out.println("\nBruce's back inside...");
     }
 }
