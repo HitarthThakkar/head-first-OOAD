@@ -1,3 +1,4 @@
+package models;
 
 public enum Wood {
     INDIAN_ROSEWOOD, MAPLE, ALDER;

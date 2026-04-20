@@ -1,11 +1,11 @@
 
-public class Guitar {
+public abstract class Instrument {
 
     private final String serialNumber;
     private double price;
-    private final GuitarSpec spec;
+    private final InstrumentSpec spec;
 
-    public Guitar(String serialNumber, double price, GuitarSpec spec) {
+    public Instrument(String serialNumber, double price, InstrumentSpec spec) {
         this.serialNumber = serialNumber;
         this.price = price;
         this.spec = spec;
@@ -23,7 +23,7 @@ public class Guitar {
         this.price = newPrice;
     }
 
-    public GuitarSpec getSpec() {
+    public InstrumentSpec getSpec() {
         return spec;
     }
 }
